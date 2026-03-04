@@ -1,287 +1,233 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Zara 🎂</title>
+<title>Happy Birthday 💕</title>
 
 <style>
 body{
 margin:0;
+font-family: 'Georgia', serif;
+background: linear-gradient(135deg,#ff9ec4,#ffc1e3);
 overflow:hidden;
-font-family:Georgia,serif;
-background:black;
-color:white;
 text-align:center;
+color:white;
 }
 
-/* PAGE SYSTEM */
-.page{
+.slide{
+display:none;
+height:100vh;
+width:100vw;
 position:absolute;
-width:100%;
-height:100%;
-display:flex;
+top:0;
+left:0;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-transition:1s;
-opacity:0;
-pointer-events:none;
+padding:20px;
 }
 
 .active{
-opacity:1;
-pointer-events:auto;
+display:flex;
+animation:fade 1s ease;
 }
 
-/* BUTTON */
+@keyframes fade{
+from{opacity:0}
+to{opacity:1}
+}
+
 button{
 padding:12px 25px;
 border:none;
-border-radius:25px;
-font-size:18px;
-cursor:pointer;
-margin:10px;
-}
-
-/* STARS */
-.star{
-position:absolute;
-width:2px;height:2px;
+border-radius:30px;
 background:white;
-animation:twinkle 2s infinite alternate;
-}
-@keyframes twinkle{
-from{opacity:0.3;}
-to{opacity:1;}
+color:#ff4fa3;
+font-weight:bold;
+margin-top:20px;
 }
 
-/* METEOR */
-.meteor{
+.bottomBtn{
 position:absolute;
-width:3px;height:100px;
-background:linear-gradient(white,transparent);
-transform:rotate(45deg);
-animation:meteor 3s linear infinite;
-}
-@keyframes meteor{
-0%{top:-100px;left:100vw;}
-100%{top:100vh;left:-100px;}
-}
-
-/* FLOAT HEART */
-.heart{
-position:absolute;
-font-size:25px;
-animation:floatUp 6s linear infinite;
-}
-@keyframes floatUp{
-0%{bottom:-50px;opacity:1;}
-100%{bottom:110vh;opacity:0;}
-}
-
-/* BALLOONS */
-.balloon{
-position:absolute;
-font-size:35px;
-animation:balloonUp 8s linear infinite;
-}
-@keyframes balloonUp{
-0%{bottom:-60px;}
-100%{bottom:110vh;}
-}
-
-/* CAKE */
-.cake{
-font-size:80px;
-}
-
-.candle{
-font-size:40px;
-cursor:pointer;
-}
-
-.hidden{
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+border-radius:50px;
 display:none;
 }
 
-/* CONFETTI */
-.confetti{
-position:absolute;
-width:8px;height:8px;
-background:red;
-animation:confettiFall 3s linear infinite;
+/* Neon Glow */
+.neon{
+font-size:40px;
+font-weight:bold;
+animation:glow 1s infinite alternate;
 }
-@keyframes confettiFall{
-0%{top:-10px;}
-100%{top:110vh;}
+@keyframes glow{
+from{text-shadow:0 0 10px white;}
+to{text-shadow:0 0 25px #ff00cc;}
 }
 
+/* Scroll Animation */
+.scroll{
+background:#fff8dc;
+color:#8b0000;
+padding:25px;
+border-radius:30px;
+width:90%;
+max-width:500px;
+transform:scaleY(0);
+transform-origin:center;
+transition:transform 2s ease;
+box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.showScroll{
+transform:scaleY(1);
+}
+
+/* Heart Rain */
+.heart{
+position:absolute;
+color:#ff4fa3;
+animation:moveUp 6s linear infinite;
+}
+@keyframes moveUp{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
 </style>
 </head>
 
 <body>
 
-<!-- PAGE 1 PASSWORD -->
-<div class="page active" id="p1">
-<h2>🔐 Enter Birthday Secret</h2>
+<!-- Slide 1 Password -->
+<div class="slide active" id="s1">
+<h2>🔐 Enter Secret Password</h2>
 <input type="password" id="pass" placeholder="Enter password">
-<button onclick="checkPass()">Unlock 🎁</button>
+<button onclick="checkPass()">Unlock 💕</button>
 <p id="error"></p>
 </div>
 
-<!-- PAGE 2 COUNTDOWN -->
-<div class="page" id="p2">
-<h2>⏳ Countdown To Celebration</h2>
-<h1 id="countdown"></h1>
+<!-- Slide 2 Countdown -->
+<div class="slide" id="s2">
+<h2>⏳ Countdown</h2>
+<h1 id="count">3</h1>
+<button class="bottomBtn" id="b2" onclick="next(3)">Ready? Tap Here 😜</button>
 </div>
 
-<!-- PAGE 3 NIGHT SKY -->
-<div class="page" id="p3">
-<h1>Happy Birthday Zara 🎂</h1>
-<p>The stars shine brighter for you tonight ✨</p>
-<button onclick="nextPage(4)">Next 🎈</button>
+<!-- Slide 3 Neon Name -->
+<div class="slide" id="s3">
+<div class="neon">Happy Birthday 💕</div>
+<h1 class="neon">Zara</h1>
+<button class="bottomBtn" id="b3" onclick="next(4)">Move Ahead My Love 💖</button>
 </div>
 
-<!-- PAGE 4 LETTER -->
-<div class="page" id="p4">
-<h2>💌 A Special Wish</h2>
-<p style="width:80%;max-width:500px;line-height:1.6;">
-On this beautiful day, may your heart glow with happiness and your dreams rise like stars in the endless sky. 
-You deserve laughter, love, and magical moments today and always. 
-May every candle you blow carry a wish that turns into reality.
-</p>
-<button onclick="nextPage(5)">Cake Time 🎂</button>
+<!-- Slide 4 Ancient Letter -->
+<div class="slide" id="s4">
+<div class="scroll" id="letter">
+
+Shubho Jonmodin Amar Jaan 💕<br><br>
+
+Aajker ei special dine ami sudhu ekta kotha bolte chai…  
+Tumi amar jibon er shobcheye shundor upohar.  
+Tomar hashi amar prithibi ke alokito kore,  
+Tomar chokh er majhe ami amar shanti khuje pai.  
+Jokhon tumi haso, amar moner shob chinta dure chole jai.  
+Tumi amar shopno, amar golpo, amar shobcheye boro bhalobasha.  
+Prottek ta din tomar shathe kataoar iccha amar,  
+Hok shey hashir modhye, ba chotto chotto rag er majhe.  
+Ami chai tomar shob shopno puro hok,  
+Tomar jibon hok shobcheye rongin ebong shukher.  
+Ami thakte chai tomar pase, aj, kal, ebong shob shomoy.  
+Shudhu mone rekho —  
+Jotoi din jaak, jotoi bochor bodle jaak,  
+Amar bhalobasha tomar jonno kokhono kombe na.  
+
+<br><br>
+❤️ Happy Birthday Amar Sona ❤️🎂
+
 </div>
 
-<!-- PAGE 5 CAKE -->
-<div class="page" id="p5">
-<h2>🎂 Make a Wish & Blow the Candle</h2>
-<div class="cake">🎂</div>
-<div class="candle" id="candle">🕯</div>
-<p>Tap the candle or blow air near mic 💨</p>
+<button class="bottomBtn" id="b4" onclick="next(5)">Aaro Ache 😏</button>
 </div>
 
-<!-- PAGE 6 FINAL -->
-<div class="page" id="p6">
-<h1>🎉 Happy Birthday Zara 🎉</h1>
-<h2>May This Year Be Magical 💖</h2>
+<!-- Slide 5 Cake -->
+<div class="slide" id="s5">
+<h1>🎂 Birthday Cake</h1>
+<button onclick="cutCake()">Cut the Cake 🎂</button>
+<div id="cakeMsg"></div>
+<button class="bottomBtn" id="b5" onclick="next(6)">Open Surprise 🎁</button>
 </div>
 
-<!-- MUSIC -->
-<audio autoplay loop>
-<source src="https://www.bensound.com/bensound-music/bensound-happyrock.mp3" type="audio/mp3">
-</audio>
+<!-- Slide 6 Gift -->
+<div class="slide" id="s6">
+<h1>🎁 Tap to Open Gift</h1>
+<button onclick="openGift()">Open 🎁</button>
+<div id="giftMsg"></div>
+</div>
 
 <script>
+let current=1;
 
-/* PAGE SWITCH */
-function nextPage(num){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById("p"+num).classList.add("active");
+function next(n){
+document.getElementById("s"+current).classList.remove("active");
+current=n;
+document.getElementById("s"+current).classList.add("active");
 }
 
-/* PASSWORD */
+/* Password */
 function checkPass(){
-let password="birthday123";
-if(document.getElementById("pass").value===password){
-nextPage(2);
-startCountdown();
+if(document.getElementById("pass").value=="love"){
+next(2);
+startCount();
 }else{
-document.getElementById("error").innerHTML="Wrong Password 😢";
+document.getElementById("error").innerHTML="Wrong Password 😜";
 }
 }
 
-/* COUNTDOWN */
-function startCountdown(){
-let count=5;
-let cd=document.getElementById("countdown");
+/* Countdown */
+function startCount(){
+let c=3;
 let interval=setInterval(()=>{
-cd.innerHTML=count;
-count--;
-if(count<0){
+c--;
+document.getElementById("count").innerHTML=c;
+if(c==0){
 clearInterval(interval);
-nextPage(3);
+document.getElementById("b2").style.display="block";
 }
 },1000);
 }
 
-/* STARS */
-for(let i=0;i<100;i++){
-let star=document.createElement("div");
-star.classList.add("star");
-star.style.left=Math.random()*100+"vw";
-star.style.top=Math.random()*100+"vh";
-document.body.appendChild(star);
-}
+/* Neon Button Delay */
+setTimeout(()=>{document.getElementById("b3").style.display="block";},3000);
 
-/* METEOR */
-setInterval(()=>{
-let meteor=document.createElement("div");
-meteor.classList.add("meteor");
-document.body.appendChild(meteor);
-setTimeout(()=>meteor.remove(),3000);
-},4000);
-
-/* HEARTS */
-setInterval(()=>{
-let heart=document.createElement("div");
-heart.classList.add("heart");
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),6000);
-},800);
-
-/* BALLOONS */
-setInterval(()=>{
-let balloon=document.createElement("div");
-balloon.classList.add("balloon");
-balloon.innerHTML="🎈";
-balloon.style.left=Math.random()*100+"vw";
-document.body.appendChild(balloon);
-setTimeout(()=>balloon.remove(),8000);
+/* Scroll Animation */
+setTimeout(()=>{
+document.getElementById("letter").classList.add("showScroll");
+setTimeout(()=>{document.getElementById("b4").style.display="block";},2000);
 },2000);
 
-/* CANDLE BLOW */
-let candle=document.getElementById("candle");
-candle.onclick=function(){
-candle.classList.add("hidden");
-celebrate();
+/* Cake */
+function cutCake(){
+document.getElementById("cakeMsg").innerHTML="Cake Cut Successfully 💕 Sweetest Birthday Ever!";
+setTimeout(()=>{document.getElementById("b5").style.display="block";},1500);
 }
 
-/* SIMPLE MIC DETECT */
-navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
-let audioContext=new AudioContext();
-let mic=audioContext.createMediaStreamSource(stream);
-let analyser=audioContext.createAnalyser();
-mic.connect(analyser);
-let data=new Uint8Array(analyser.frequencyBinCount);
-function detect(){
-analyser.getByteFrequencyData(data);
-let volume=data.reduce((a,b)=>a+b)/data.length;
-if(volume>50){
-candle.classList.add("hidden");
-celebrate();
-}
-requestAnimationFrame(detect);
-}
-detect();
-}).catch(()=>{});
-
-/* CONFETTI */
-function celebrate(){
-nextPage(6);
-for(let i=0;i<100;i++){
-let conf=document.createElement("div");
-conf.classList.add("confetti");
-conf.style.left=Math.random()*100+"vw";
-conf.style.background="hsl("+Math.random()*360+",100%,50%)";
-document.body.appendChild(conf);
-setTimeout(()=>conf.remove(),3000);
-}
+/* Gift */
+function openGift(){
+document.getElementById("giftMsg").innerHTML="Surprise! 💖 You are my forever happiness!";
 }
 
+/* Heart Rain */
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+15)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove();},6000);
+},400);
 </script>
 
 </body>
